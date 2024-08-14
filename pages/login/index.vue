@@ -22,7 +22,7 @@ const login = async (event: Event) => {
 
     console.log('Login successful:', data);
 
-    if (data.status === 200) {
+    if (data.statusCode === 200) {
       store.setUserInfo(data); // Ensure 'data' contains the correct user info
       store.setAuth(true);
       store.setToken(data.data.token);
