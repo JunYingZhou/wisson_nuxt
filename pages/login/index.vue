@@ -34,6 +34,8 @@ const login = async (event: Event) => {
     }
   } catch (error) {
     console.error('Login failed:', error);
+    // 弹窗
+    alert('用户名或密码错误');
   }
 };
 </script>

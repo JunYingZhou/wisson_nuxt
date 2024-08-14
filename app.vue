@@ -10,8 +10,7 @@
 
 
 // 配置seo,浏览器引擎优化
-import {userSetUpStore} from "~/composables";
-import Index from "./pages/index/index.vue";
+
 
 useSeoMeta({
   // 配置网页标题
@@ -21,9 +20,6 @@ useSeoMeta({
   // 配置网页关键词
   keywords: '自动充电机器人,机器人,充电机器人,万勋',
 })
-
-const store = userSetUpStore();
-const isAuth = store.getAuth;
 
 </script>
 
@@ -54,6 +50,9 @@ const isAuth = store.getAuth;
         </div>
       </template>
     </div> -->
+
+
+
     <NuxtPage />
 </template>
 

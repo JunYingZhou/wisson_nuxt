@@ -12,10 +12,10 @@ const axiosInstance = axios.create({
 // 请求拦截器
 axiosInstance.interceptors.request.use(config => {
     // 可以在这里添加认证头或其他请求配置
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    //     config.headers.Authorization = `Bearer ${token}`;
-    // }
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
 
     console.log("进行请求数据设置")
 
@@ -28,6 +28,11 @@ axiosInstance.interceptors.request.use(config => {
 axiosInstance.interceptors.response.use(response => {
 
     console.log("进行响应请求设置")
+    // 如何token过期，则跳转到登录页面
+    if (response.data.code === 401) {
+        localStorage.removeItem('token');
+        navigateTo('/login');
+    }
 
     return response.data;
 }, error => {
