@@ -65,4 +65,9 @@ useSeoMeta({
   //修改主题颜色
   --van-primary-color: #FFC20A !important;
 }
+
+.dv-border-box-content{
+  display: flex;
+}
+
 </style>

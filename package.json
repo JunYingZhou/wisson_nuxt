@@ -10,6 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@jiaminghi/data-view": "^2.10.0",
+    "@newpanjing/datav-vue3": "^0.0.0-alpha.0",
+    "@nuxt/image": "^1.7.0",
     "@pinia/nuxt": "^0.5.3",
     "@vant/nuxt": "^1.0.5",
     "axios": "^1.7.3",

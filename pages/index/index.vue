@@ -7,6 +7,9 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <script setup lang="ts">
+import NaviTop from "~/components/NaviTop.vue";
+import MaxWell2_1 from "~/components/MaxWell2_1.vue";
+
 const { $axios } = useNuxtApp();
 
 const router = useRouter();
@@ -17,8 +20,6 @@ const count = ref<number>(0);
 const auth = ref<boolean>(false);
 
 // Store initialization
-const store = userSetUpStore()
-auth.value = store.getAuth;
 
 
 definePageMeta({
@@ -87,18 +88,19 @@ const fetchUser = async () => {
 </script>
 
 <template>
-  <div>
-    <h1>首页</h1>
-    <h1>欢迎回来</h1>
-    <!-- 跳转路由到video,传参 -->
-    <van-button type="primary" @click="router.push(`/video/${1}`)">跳转到视频(路径传参)</van-button>
-    <br>
-    <van-button type="primary" @click="router.push({ path: '/my', params: { id: 2 } })">跳转到我的</van-button>
-    <br>
-    <van-button type="primary" @click="fetchUser">axios请求验证</van-button>
+  <div class="container">
+    <NaviTop/>
+    <MaxWell2_1/>
   </div>
+
 </template>
 
 <style scoped>
 /* Add any scoped styles here */
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 </style>

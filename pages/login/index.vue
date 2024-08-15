@@ -1,43 +1,63 @@
 <script setup lang="ts">
 
+import {useExampleStore} from "~/stores/modules/useCountStore";
+import {useUserInfoStore} from "~/stores/modules/useUserStore";
 
+const { $axios } = useNuxtApp();
 const router = useRouter();
-const store = userSetUpStore();
 
 const formData = ref({
-  key1: '',
-  key2: ''
+  username: '',
+  password: ''
 });
+
+const storesExample = useExampleStore();
+const userStore = useUserInfoStore();
+
 
 const login = async (event: Event) => {
   event.preventDefault();
   try {
-    const data: ResponseData = await $fetch('http://localhost:8989/api/login', {
-      method: 'POST',
-      body: JSON.stringify(formData.value),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    console.log('Login successful:', data);
-
-    if (data.statusCode === 200) {
-      store.setUserInfo(data); // Ensure 'data' contains the correct user info
-      store.setAuth(true);
-      store.setToken(data.data.token);
-      console.log('User info:', store.getAuth);
-      // Navigate to home page after successful login
-      router.push('/');
-    } else {
-      console.error('Login error:', data.message || 'Unknown error');
-    }
+    const result = await $axios.post('/auth/login', formData.value);
+    console.log('登录成功，返回数据:', result);
+    // 根据返回结果进行后续操作，例如保存token等
+    userStore.setUserInfo(result);
+    userStore.setToken(result.token);
+    console.log('是否登录:', userStore.getToken);
+    // 路由跳转到首页
+    navigateTo('/');
   } catch (error) {
-    console.error('Login failed:', error);
-    // 弹窗
-    alert('用户名或密码错误');
+    // 处理登录失败的情况
+    console.error('登录失败:', error);
   }
-};
+}
+
+    // const data: ResponseData = await $fetch('http://localhost:8989/api/login', {
+    //   method: 'POST',
+    //   body: JSON.stringify(formData.value),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+    //
+    // console.log('Login successful:', data);
+
+  //   if (data.statusCode === 200) {
+  //     store.setUserInfo(data); // Ensure 'data' contains the correct user info
+  //     store.setAuth(true);
+  //     store.setToken(data.data.token);
+  //     console.log('User info:', store.getAuth);
+  //     // Navigate to home page after successful login
+  //     router.push('/');
+  //   } else {
+  //     console.error('Login error:', data.message || 'Unknown error');
+  //   }
+  // } catch (error) {
+  //   console.error('Login failed:', error);
+  //   // 弹窗
+  //   alert('用户名或密码错误');
+  // }
+// };
 </script>
 
 <template>
@@ -45,11 +65,11 @@ const login = async (event: Event) => {
     <form class="form" @submit="login">
       <span class="input-span">
         <label for="email" class="label">Email</label>
-        <input v-model="formData.key1" type="email" name="email" id="email" placeholder="Enter your email" />
+        <input v-model="formData.username" type="email" name="email" id="email" placeholder="Enter your email" />
       </span>
       <span class="input-span">
         <label for="password" class="label">Password</label>
-        <input v-model="formData.key2" type="password" name="password" id="password"
+        <input v-model="formData.password" type="password" name="password" id="password"
           placeholder="Enter your password" />
       </span>
       <span class="span"><a href="#">Forgot password?</a></span>

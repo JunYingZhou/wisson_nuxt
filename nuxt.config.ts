@@ -1,12 +1,3 @@
-/*
- * @Author: zjy 3497577844@qq.com
- * @Date: 2024-08-06 21:51:35
- * @LastEditors: zjy 3497577844@qq.com
- * @LastEditTime: 2024-08-11 17:08:32
- * @FilePath: \my-app\nuxt.config.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // 是否开启SSR,默认开启
   // ssr: false,
@@ -23,6 +14,7 @@ export default defineNuxtConfig({
     },
   },
 
+  plugins: [{ src: "~/plugins/datav.ts", mode: "client" }],
   // 依赖
   modules: ["@vant/nuxt", '@pinia/nuxt'],
 
