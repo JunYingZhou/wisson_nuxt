@@ -7,8 +7,8 @@ const { $axios } = useNuxtApp();
 const router = useRouter();
 
 const formData = ref({
-  username: '',
-  password: ''
+  username: 'tenant@thingsboard.org',
+  password: 'WissonRobotics2024'
 });
 
 const storesExample = useExampleStore();
@@ -28,6 +28,7 @@ const login = async (event: Event) => {
     navigateTo('/');
   } catch (error) {
     // 处理登录失败的情况
+    alert('用户名或密码错误');
     console.error('登录失败:', error);
   }
 }

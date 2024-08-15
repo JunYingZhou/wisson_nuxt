@@ -8,7 +8,6 @@
 -->
 <script setup lang="ts">
 import NaviTop from "~/components/NaviTop.vue";
-import MaxWell2_1 from "~/components/MaxWell2_1.vue";
 
 const { $axios } = useNuxtApp();
 
@@ -90,7 +89,8 @@ const fetchUser = async () => {
 <template>
   <div class="container">
     <NaviTop/>
-    <MaxWell2_1/>
+<!--    <MaxWell2_1/>-->
+    <MaxWellDataV/>
   </div>
 
 </template>

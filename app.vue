@@ -70,4 +70,9 @@ useSeoMeta({
   display: flex;
 }
 
+.border-box-content{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 </style>
